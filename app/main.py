@@ -27,10 +27,3 @@ def create_person_list(people: list) -> list:
         person_data_list.append(Person.people[person.get("name")])
 
     return person_data_list
-
-
-people = [
-    {"name": "Ross", "age": 30, "wife": "Rachel"},
-    {"name": "Joey", "age": 29, "wife": None},
-    {"name": "Rachel", "age": 28, "husband": "Ross"}
-]
