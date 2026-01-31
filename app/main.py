@@ -7,23 +7,25 @@ class Person:
         Person.people[self.name] = self
 
 
-def create_person_list(people: list) -> list:
-    person_data_list = []
-    for person in people:
+def create_person_list(people_data: list) -> list:
+    for person in people_data:
         Person(person.get("name"), person.get("age"))
-    for person in people:
-        if person.get("wife") is not None:
+    for person in people_data:
+        name = person.get("name")
+        wife_name = person.get("wife")
+        husband_name = person.get("husband")
+        if name and wife_name is not None:
             setattr(
-                Person.people[person.get("name")],
+                Person.people.get(name),
                 "wife",
-                Person.people[person.get("wife")]
+                Person.people.get(wife_name)
             )
-        elif person.get("husband") is not None:
+        if name and husband_name is not None:
             setattr(
-                Person.people[person.get("name")],
+                Person.people.get(name),
                 "husband",
-                Person.people[person.get("husband")]
+                Person.people.get(husband_name),
             )
-        person_data_list.append(Person.people[person.get("name")])
+    result = [Person.people.get(p.get("name")) for p in people_data]
 
-    return person_data_list
+    return result
